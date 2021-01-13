@@ -45,15 +45,30 @@ public class Radix{
       SortableLinkedList seven = new SortableLinkedList();
       SortableLinkedList eight = new SortableLinkedList();
       SortableLinkedList nine = new SortableLinkedList();    //create buckets everytime, first pass for one's digit, 2nd for 2nd, third for 3rd
-    }
-    for(int j = 0; j < data.size(); j ++){ //loop through data to sort
-      int digit = nth(data.get(j),j);  //gets ones place, added according to where. This is a stable sort too
-      for(int i = 0; i <= 9; i++){
-        if(digit == i){
 
-        }
-      }
+    for(int j = 0; j < data.size(); j ++){ //loop through data to sort
+      int ele = data.get(j);
+      int digit = nth(ele,j);  //gets ones place, added according to where. This is a stable sort too. Is there a way to do this with a loop?
+      if(digit ==0) zero.add(ele);
+      else if(digit == 1) one.add(ele);
+      else if(digit == 2) two.add(ele);
+      else if(digit == 3) three.add(ele);
+      else if(digit == 4) four.add(ele);
+      else if(digit == 5) five.add(ele);
+      else if(digit == 6) six.add(ele);
+      else if(digit == 7) seven.add(ele);
+      else if(digit == 8) eight.add(ele);
+      else if(digit == 9) nine.add(ele);
     }
+    SortableLinkedList temp = new SortableLinkedList();
+    SortableLinkedList[] buckets = new SortableLinkedList[]{zero,one,two,three,four,five,six,seven,eight,nine};
+    merge(temp,buckets);
+    for(int j = 0; j < data.size(); j ++){//removing from data to add in a sorted order
+      data.remove(j);
+    }
+    data.extend(temp);
+  }
+
   }
 
 }
