@@ -18,22 +18,18 @@
     }
 
     public static void radixSortSimple(SortableLinkedList data){
-
-      int maxValue = 0;
-      for(int i = 0; i < data.size(); i ++){ //loop through data to get maxValue
-          if (data.get(i) > maxValue){
-            maxValue = data.get(i);
-          }
-      }
-      int mostDigits = length(maxValue); //e.g 432, mostdigits would be 3
       SortableLinkedList[] buckets = new SortableLinkedList[10];
       for(int i = 0; i < 10; i ++){
         buckets[i] = new SortableLinkedList();
       }
 
-      for(int i = 0; i < mostDigits; i ++){
+      int currentDigits = 1;
+      for(int i = 0; i < currentDigits; i ++){
         while(data.size()>0){
-          int ele = data.get(0  );
+          if(length(data.get(0)) > currentDigits){
+            currentDigits = length(data.get(0));
+          }
+          int ele = data.get(0);
           int digit = nth(ele,i);
           buckets[digit].add(ele);
           data.remove(0);
